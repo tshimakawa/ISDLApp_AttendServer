@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
   connection.query(`SELECT DISTINCT date FROM attendance_data `,function(error,result,fields){
     if(error) throw error;
     else{
-      console.log(result.date);
+      console.log(result);
       const response = {"status":200,
                         "data":result.date,
                         };
