@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/attend',attend);
-app.use('/mettingDate',meetingDate);
+app.use('/meetingDate',meetingDate);
 //app.login('/login',login);
 
 // catch 404 and forward to error handler
