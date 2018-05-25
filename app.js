@@ -8,7 +8,7 @@ const https = require('https');
 const fs = require('fs');
 
 const attend = require('./routes/attend');
-const logView = require('./routes/logView');
+const logView = require('./routes/meetingDate');
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/attend',attend);
-app.use('/logView', logView);
+app.use('/mettingDate',meetingDate);
 //app.login('/login',login);
 
 // catch 404 and forward to error handler
