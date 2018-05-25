@@ -23,15 +23,24 @@ router.post('/',function(req,res){
   const year = date.getFullYear();
   const month = date.getMonth()+1;
   const day = date.getDate();
-  connection.query(`INSERT INTO attendance_data(date,uid) VALUES("${year}-${month}-${day}","${uid}")`,function(error,result,fields){
+  connection.query(`SELECT id FROM attendance_data WHERE date = "${year}-${month}-${day}" AND uid ="${uid}"`,function(error,result,fields){
     if (error) throw error;
-    else{
-      console.log("success");
+    else if (result.length == 0){
+      connection.query(`INSERT INTO attendance_data(date,uid) VALUES("${year}-${month}-${day}","${uid}")`,function(error,result,fields){
+        if (error) throw error;
+        else{
+          const response = {"status":"200"};
+        	res.send(JSON.stringify(response));
+          console.log("success");
+        }
+      });
+    }else if (result.length == 1) {
+      const response = {"status":"600"};
+    	res.send(JSON.stringify(response));
+    }else{
+
     }
   });
-
-	const response = {};
-	res.send(JSON.stringify(response));
 });
 
 module.exports = router;
