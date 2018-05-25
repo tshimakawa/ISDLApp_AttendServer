@@ -5,7 +5,7 @@ const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'isdl-admin',
   password : 'Isdl443@',
-  database : 'attendance_platform_db'
+  database : 'db_isdl'
 });
 
 /* GET home page. */
