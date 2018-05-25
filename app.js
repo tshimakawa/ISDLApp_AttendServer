@@ -8,7 +8,7 @@ const https = require('https');
 const fs = require('fs');
 
 const attend = require('./routes/attend');
-const logView = require('./routes/meetingDate');
+const meetingDate = require('./routes/meetingDate');
 
 const app = express();
 
