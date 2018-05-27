@@ -9,7 +9,7 @@ const fs = require('fs');
 
 const attend = require('./routes/attend');
 const meetingDate = require('./routes/meetingDate');
-const attendList = require('.routes/attendList');
+const attendList = require('./routes/attendList');
 
 const app = express();
 
