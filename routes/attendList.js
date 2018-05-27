@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
       let absentList = new Array();
 
       for(let i=0;i<result.length;i++){
-        if(result[i].date == NULL){
+        if(result[i].date == null){
           absentList.push(result.users.name);
         }else{
           attendList.push(result.users.name);
