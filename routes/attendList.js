@@ -31,9 +31,9 @@ router.get('/', function(req, res, next) {
 
       for(let i=0;i<result.length;i++){
         if(result[i].date == null){
-          absentList.push(result.users.name);
+          absentList.push(result.name);
         }else{
-          attendList.push(result.users.name);
+          attendList.push(result.name);
         }
       }
       const response = {"status":200,
