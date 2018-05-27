@@ -8,6 +8,9 @@ const connection = mysql.createConnection({
   database : 'db_isdl'
 });
 
+router.use(bodyParser.urlencoded({extended:true}));
+router.use(bodyParser.json());
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   const headers = req.headers;
