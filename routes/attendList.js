@@ -37,7 +37,10 @@ router.get('/', function(req, res, next) {
         }
       }
       const response = {"status":200,
-                        "data":dateList,
+                        "data":{
+                          "attendList":attendList,
+                          "absentList":absentList
+                        },
                         };
       res.send(JSON.stringify(response));
     }
