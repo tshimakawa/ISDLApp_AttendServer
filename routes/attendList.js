@@ -12,7 +12,10 @@ const connection = mysql.createConnection({
 router.get('/', function(req, res, next) {
   const headers = req.headers;
   let date = headers.date;
+  console.log(date);
   date = formatDate(date, 'yyyy-MM-dd');
+  console.log(date);
+
 
   connection.query(`select users.name, date from users left outer join (select name,date from attendance_data where date = "${date}") as attendance on users.name = attendance.name`,function(error,result,fields){
     if(error) throw error;
