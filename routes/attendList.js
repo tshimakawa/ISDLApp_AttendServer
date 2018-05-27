@@ -12,6 +12,7 @@ const connection = mysql.createConnection({
 router.get('/', function(req, res, next) {
   const headers = req.headers;
   let date = headers.date;
+  console.log(headers);
   console.log(date);
   date = formatDate(date, 'yyyy-MM-dd');
   console.log(date);
