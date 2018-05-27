@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 const connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'isdl-admin',
