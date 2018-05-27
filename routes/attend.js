@@ -26,12 +26,18 @@ router.post('/',function(req,res){
   connection.query(`SELECT id FROM attendance_data WHERE date = "${year}-${month}-${day}" AND uid ="${uid}"`,function(error,result,fields){
     if (error) throw error;
     else if (result.length == 0){
-      connection.query(`INSERT INTO attendance_data(date,uid) VALUES("${year}-${month}-${day}","${uid}")`,function(error,result,fields){
-        if (error) throw error;
+      connection.query(`SELECT name FROM users where uid ="${uid}"`,function(error,result,fields){
+        if(error) throw error;
         else{
-          const response = {"status":200};
-        	res.send(JSON.stringify(response));
-          console.log("success");
+          const name = result[0].name;
+          connection.query(`INSERT INTO attendance_data(date,uid,name) VALUES("${year}-${month}-${day}","${uid}","${name}")`,function(error,result,fields){
+            if (error) throw error;
+            else{
+              const response = {"status":200};
+            	res.send(JSON.stringify(response));
+              console.log("success");
+            }
+          });
         }
       });
     }else if (result.length == 1) {

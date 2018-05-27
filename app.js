@@ -9,6 +9,7 @@ const fs = require('fs');
 
 const attend = require('./routes/attend');
 const meetingDate = require('./routes/meetingDate');
+const attendList = require('.routes/attendList');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/attend',attend);
 app.use('/meetingDate',meetingDate);
-//app.login('/login',login);
+app.use('/attendList',attendList);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
