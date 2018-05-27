@@ -18,8 +18,6 @@ router.get('/', function(req, res, next) {
   let date = headers.date;
   console.log(headers);
   console.log(date);
-  date = formatDate(date, 'yyyy-MM-dd');
-  console.log(date);
 
 
   connection.query(`select users.name, date from users left outer join (select name,date from attendance_data where date = "${date}") as attendance on users.name = attendance.name`,function(error,result,fields){
