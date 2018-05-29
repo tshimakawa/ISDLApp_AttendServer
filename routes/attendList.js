@@ -41,7 +41,7 @@ router.get('/', function(req, res, next) {
                           "attendList":attendList,
                           "absentList":absentList
                         },
-                        };
+                      };
       res.send(JSON.stringify(response));
     }
   });

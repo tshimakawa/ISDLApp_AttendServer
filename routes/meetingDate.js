@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
       console.log(result);
 
       for(let i=0;i<result.length;i++){
-        result[i].date = formatDate(result[i].date, 'yyyy年MM月dd日');//取得した講義日のフォーマットを変更
+        result[i].date = formatDate(result[i].date, 'yyyy-MM-dd');//取得した講義日のフォーマットを変更
         dateList.push(result[i].date);
       }
 
