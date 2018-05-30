@@ -50,26 +50,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/',function(req,res){
 	// const body=req.body.events[0];
-
-
-  console.log(req.headers);
-
-
-  connection.query(`SELECT id FROM attendance_data WHERE date = "${year}-${month}-${day}" AND uid ="${uid}"`,function(error,result,fields){
-    if (error) throw error;
-    else if (result.length == 0){
-
-        if(error) throw error;
-        else{
-
-        }
-      });
-    }else if (result.length == 1) {
-
-    }else{
-
-    }
-  });
 });
 
 module.exports = router;
