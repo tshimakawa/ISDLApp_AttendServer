@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
         }else if (result.length == 1){
           const response = {"status":200,
                             "data":{
-                              "name":`"${name}"`,
+                              "name":`${name}`,
                               "status":"出席済"
                             }
                           };
