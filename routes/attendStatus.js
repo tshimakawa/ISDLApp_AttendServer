@@ -10,22 +10,17 @@ const connection = mysql.createConnection({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
   const headers = req.headers;
   const uid = headers.uid;
   connection.query(`SELECT name FROM users where uid ="${uid}"`,function(error,result,fields){
     if (error) throw error;
     else{
-
-      console.log("aaaaaaaaaaaaaa");
-
       const name = result[0].name;
       const date = new Date();
       const year = date.getFullYear();
       const month = date.getMonth()+1;
       const day = date.getDate();
       connection.query(`SELECT id FROM attendance_data WHERE date = "${year}-${month}-${day}" AND uid ="${uid}"`,function(error,result,fields){
-        console.log("aaaaaaaaaaaaaa");
         if (error) throw error;
         else if (result.length == 0){
           const response = {"status":200,
@@ -49,7 +44,6 @@ router.get('/', function(req, res, next) {
       });
     }
   });
-
 });
 
 router.post('/',function(req,res){
