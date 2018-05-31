@@ -25,7 +25,7 @@ router.get('/', function(req, res, next) {
         else if (result.length == 0){
           const response = {"status":200,
                             "data":{
-                              "name":`"${name}"`,
+                              "name":name,
                               "status":"未出席"
                             }
                           };
