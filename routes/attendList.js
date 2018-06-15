@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
   console.log(date);
 
 
-  connection.query(`select users.name, date from users left outer join (select name,date from attendance_data where date = "${date}") as attendance on users.name = attendance.name`,function(error,result,fields){
+  connection.query(`select users.name, date,student from users left outer join (select name,date from attendance_data where date = "${date}") as attendance on users.name = attendance.name`,function(error,result,fields){
     if(error) throw error;
     else{
 
@@ -31,7 +31,9 @@ router.get('/', function(req, res, next) {
 
       for(let i=0;i<result.length;i++){
         if(result[i].date == null){
-          absentList.push(result[i].name);
+          if(result[i].student == true){
+            absentList.push(result[i].name);
+          }
         }else{
           attendList.push(result[i].name);
         }
