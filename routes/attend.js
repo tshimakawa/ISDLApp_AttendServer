@@ -24,28 +24,33 @@ router.post('/',function(req,res){
   const month = date.getMonth()+1;
   const day = date.getDate();
   connection.query(`SELECT id FROM attendance_data WHERE date = "${year}-${month}-${day}" AND uid ="${uid}"`,function(error,result,fields){
-    if (error) throw error;
-    else if (result.length == 0){
+    if (error) {
+      throw error;
+      res.status(800);
+    }else if (result.length == 0){
       connection.query(`SELECT name FROM users where uid ="${uid}"`,function(error,result,fields){
-        if(error) throw error;
-        else{
+        if(error){
+          throw error;
+          res.status(801);
+        }else{
           const name = result[0].name;
           connection.query(`INSERT INTO attendance_data(date,uid,name) VALUES("${year}-${month}-${day}","${uid}","${name}")`,function(error,result,fields){
-            if (error) throw error;
+            if (error) {
+              throw error;
+              res.status(802)
+            }
             else{
-              const response = {"status":200};
-            	res.send(JSON.stringify(response));
-              console.log("success");
+              res.status(200);
             }
           });
         }
       });
     }else if (result.length == 1) {
-      const response = {"status":600};
-    	res.send(JSON.stringify(response));
+      res.status(300);
     }else{
-
+      res.status(600);
     }
+    res.send();
   });
 });
 

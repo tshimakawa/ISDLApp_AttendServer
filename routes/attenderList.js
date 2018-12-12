@@ -23,7 +23,6 @@ router.get('/', function(req, res, next) {
   connection.query(`select users.name, date,student from users left outer join (select name,date from attendance_data where date = "${date}") as attendance on users.name = attendance.name`,function(error,result,fields){
     if(error) throw error;
     else{
-
       console.log(result);
 
       let attendList = new Array();
@@ -38,12 +37,11 @@ router.get('/', function(req, res, next) {
           attendList.push(result[i].name);
         }
       }
-      const response = {"status":200,
-                        "data":{
-                          "attendList":attendList,
-                          "absentList":absentList
-                        },
-                      };
+      res.status(200);
+      const response = {
+        "attenderList":attendList,
+        "absenterList":absentList
+      };
       res.send(JSON.stringify(response));
     }
   });

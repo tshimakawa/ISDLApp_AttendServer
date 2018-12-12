@@ -8,7 +8,6 @@ const connection = mysql.createConnection({
   database : 'db_isdl'
 });
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   const headers = req.headers;
   const uid = headers.uid;
@@ -21,33 +20,32 @@ router.get('/', function(req, res, next) {
       const month = date.getMonth()+1;
       const day = date.getDate();
       connection.query(`SELECT id FROM attendance_data WHERE date = "${year}-${month}-${day}" AND uid ="${uid}"`,function(error,result,fields){
-        if (error) throw error;
-        else if (result.length == 0){
-          const response = {"status":200,
-                            "data":{
-                              "name":name,
-                              "status":"未出席"
-                            }
-                          };
-        	res.send(JSON.stringify(response));
-        }else if (result.length == 1){
-          const response = {"status":200,
-                            "data":{
-                              "name":name,
-                              "status":"出席済"
-                            }
-                          };
-        	res.send(JSON.stringify(response));
+        if (error){throw error;
+          res.status(800);
+          res.send();
         }else{
-          const response = {"status":600};
+          let response;
+          if(result.length == 0){
+            res.status(200);
+            response = {
+              "name":name,
+              "status":"未出席"
+            };
+          }else if (result.length == 1) {
+            res.status(200);
+            response = {
+              "name":name,
+              "status":"出席済"
+            };
+          }else{
+            res.status(600);
+            response = null;
+          }
+          res.send(JSON.stringify(response));
         }
       });
     }
   });
-});
-
-router.post('/',function(req,res){
-	// const body=req.body.events[0];
 });
 
 module.exports = router;

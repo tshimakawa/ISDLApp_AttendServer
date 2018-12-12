@@ -13,19 +13,14 @@ router.get('/', function(req, res, next) {
   connection.query(`SELECT DISTINCT date FROM attendance_data `,function(error,result,fields){
     if(error) throw error;
     else{
-
       let dateList = new Array();
-
       console.log(result);
-
       for(let i=0;i<result.length;i++){
         result[i].date = formatDate(result[i].date, 'yyyy-MM-dd');//取得した講義日のフォーマットを変更
         dateList.push(result[i].date);
       }
-
-      const response = {"status":200,
-                        "data":dateList,
-                        };
+      res.status(200);
+      const response = {"attendDateList":dateList};
       res.send(JSON.stringify(response));
     }
   });
